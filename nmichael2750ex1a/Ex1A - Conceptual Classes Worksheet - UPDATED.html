@@ -1,0 +1,44 @@
+﻿<html><head><title>Exercise 1A - UPDATED</title>
+    <style type="text/css">
+        .auto-style1 {
+            margin-left: 40px;
+        }
+    </style>
+</head><body>
+<p>Nathan Michael<br />COMC2750 Exercise 1A - UPDATED</p>
+<p>&nbsp;</p>
+<p class="MsoNormal" style="MARGIN: 0in 0in 0pt"><b>Find Conceptual Classes:</b> Using the category list below (from Larman, p140-141) and the given use cases and database diagram,&nbsp;list the conceptual classes that fit each category.&nbsp;(The same class may be listed more than once.)&nbsp; Also list any classes below that don't fit any specific category.</p>
+<p class="MsoNormal" style="MARGIN: 0in 0in 0pt">&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><b>Business transactions:</b></p>
+<p style="margin-left: 40px">Enrollment(StudentId, SectionId, GradeType, Grade)</p>
+<p><b>Transaction line items:</b></p>
+<p style="margin-left: 40px">Grade(GradeId, AssignmentId, StudentId, Points, DateSubmitted)</p>
+<p><b>Product or service related to a transaction:</b>&nbsp;</p>
+<p style="margin-left: 40px">Section(SectionId, CourseId, TermId, RoomId)</p>
+<p><b>Roles of people:</b></p>
+<p class="auto-style1">Student(PersonId)</p>
+    <p class="auto-style1">Instructor(PersonId)</p>
+<p><b>Place of transaction or service:</b></p>
+<p style="margin-left: 40px">Address(AddressId, Address, City, State, Country, ZipCode)</p>
+    <p style="margin-left: 40px">Room(RoomId, RoomNumber, Capacity)</p>
+<p><b>Noteworthy events:</b>&nbsp;</p>
+<p>&nbsp;</p>
+<p><b>Physical objects:</b></p>
+<p class="auto-style1">Person(PersonId, LastName, FirstName, MI, LoginName)</p>
+<p><b>Descriptions of things:</b></p>
+<p style="margin-left: 40px">Phone(PhoneId, PhoneNumber, Description)</p>
+    <p style="margin-left: 40px">Email(EmailID, EmailAddress)</p>
+    <p style="margin-left: 40px">Major(MajorId, Major)</p>
+    <p style="margin-left: 40px">Course(CourseId, CourseNum, CourseTitle, Credits)</p>
+    <p style="margin-left: 40px">Term(TermId, Year, Semester)</p>
+    <p style="margin-left: 40px">Schedule(ScheduleId, StartTime, EndTime, Sun, Mon, Tues...)</p>
+    <p style="margin-left: 40px">Assignment(AssignmentId, SectionId, Unit, Assignement, Description, MaxPoint, DueDate, Type)</p>
+<p><b>Catalogs:</b></p>
+<p>&nbsp;</p>
+<p><b>Containers of other things:</b></p>
+<p>&nbsp;</p>
+<p><b>Things in a container:</b></p>
+<p style="margin-left: 40px">StudentMajor(PersonId, MajorId, GraduationDate, BeginningDate)</p>
+</body></html>

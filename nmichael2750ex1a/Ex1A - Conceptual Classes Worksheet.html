@@ -1,0 +1,82 @@
+﻿<html><head><title>Exercise 1A</title>
+    </head><body>
+<p>Nathan Michael<br />COMC2750 Exercise 1A</p>
+<p>&nbsp;</p>
+<p class="MsoNormal" style="MARGIN: 0in 0in 0pt"><b>Find Conceptual Classes:</b> Using the category list below (from Larman, p140-141) and the given use cases and database diagram,&nbsp;list the conceptual classes that fit each category.&nbsp;(The same class may be listed more than once.)&nbsp; Also list any classes below that don't fit any specific category.</p>
+<p class="MsoNormal" style="MARGIN: 0in 0in 0pt">&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><b>Business transactions:</b></p>
+<p style="margin-left: 40px"><span style="font-size:13.5pt;line-height:107%;
+font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:
+Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+color:black;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:
+AR-SA">Enrollment(StudentId, SectionId, GradeType, Grade)</span></p>
+    <p style="margin-left: 40px"><span style="font-size:13.5pt;line-height:107%;
+font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:
+Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+color:black;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:
+AR-SA">Grade(GradeId, AssignmentId, StudentId, Points, DateCompleted)</span></p>
+<p><b>Transaction line items:</b></p>
+<p style="margin-left: 40px">&nbsp;</p>
+<p><b>Product or service related to a transaction:</b>&nbsp;</p>
+<p style="margin-left: 40px"><span style="font-size:13.5pt;line-height:107%;
+font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:
+Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+color:black;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:
+AR-SA">Section(SectionId, CourseId, TermId, Capacity, RoomId, ScheduleId)</span></p>
+<p><b>Roles of people:</b></p>
+    <p style="margin-left: 40px">
+        <span style="font-size:13.5pt;color:black">Student(PersonId)<o:p></o:p></span></p>
+    <p style="margin-left: 40px">
+        <span style="font-size:13.5pt;color:black">Instructor(PersonId)<o:p></o:p></span></p>
+<p><b>Place of transaction or service:</b></p>
+    <p style="margin-left: 40px"><span style="font-size:13.5pt;line-height:107%;
+font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:
+Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+color:black;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:
+AR-SA">Room(RoomId, RoomNumber, Capacity)</span></p>
+<p><b>Noteworthy events:</b>&nbsp;</p>
+<p>&nbsp;</p>
+<p><b>Physical objects:</b></p>
+    <p style="margin-left: 40px">
+        <span style="font-size:13.5pt;color:black">Person(PersonId, LastName, FirstName, MI, LoginName, EmailAddress, PhoneNumber, Address, City, Sate, ZipCode)<o:p></o:p></span></p>
+<p><b>Descriptions of things:</b></p>
+    <p style="margin-left: 40px"><span style="font-size:13.5pt;line-height:107%;
+font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:
+Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+color:black;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:
+AR-SA">Major(MajorId, Major)</span></p>
+    <p style="margin-left: 40px"><span style="font-size:13.5pt;line-height:107%;
+font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:
+Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+color:black;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:
+AR-SA">Course(CourseId, CourseNum, CourseTitle, Credits)</span></p>
+    <p style="margin-left: 40px">
+        <span style="font-size:13.5pt;color:black">Term(TermId, Year, Semester)<o:p></o:p></span></p>
+    <p style="margin-left: 40px">
+        <span style="font-size:13.5pt;color:black">Schedule(ScheduleId, StartTime, EndTime, Sun, Mon, Tues, …)<o:p></o:p></span></p>
+    <p style="margin-left: 40px"><span style="font-size:13.5pt;line-height:107%;
+font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:
+Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+color:black;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:
+AR-SA">Assignment(AssignmentId, SectionId, Unit, Assignment, Description, MaxPoint, DueDate, Type)</span></p>
+<p><b>Catalogs:</b></p>
+<p>&nbsp;</p>
+<p><b>Containers of other things:</b></p>
+<p>&nbsp;</p>
+<p><b>Things in a container:</b></p>
+<p style="margin-left: 40px"><span style="font-size:13.5pt;line-height:107%;
+font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:
+Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+color:black;mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:
+AR-SA">StudentMajor(PersonId, MajorId, BeginningDate, GraduationDate)</span></p>
+</body></html>
