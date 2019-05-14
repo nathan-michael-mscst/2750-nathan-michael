@@ -1,0 +1,762 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StudentInfoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="StudentInfoModelStoreContainer">
+    <EntitySet Name="Schools" EntityType="StudentInfoModel.Store.Schools" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="People" EntityType="StudentInfoModel.Store.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Enrollments" EntityType="StudentInfoModel.Store.Enrollments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sections" EntityType="StudentInfoModel.Store.Sections" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Courses" EntityType="StudentInfoModel.Store.Courses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Departments" EntityType="StudentInfoModel.Store.Departments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Terms" EntityType="StudentInfoModel.Store.Terms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Assignments" EntityType="StudentInfoModel.Store.Assignments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AssignmentGrades" EntityType="StudentInfoModel.Store.AssignmentGrades" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="People_Student" EntityType="StudentInfoModel.Store.People_Student" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="SchoolDepartment" Association="StudentInfoModel.Store.SchoolDepartment">
+      <End Role="School" EntitySet="Schools" />
+      <End Role="Department" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="SchoolTerm" Association="StudentInfoModel.Store.SchoolTerm">
+      <End Role="School" EntitySet="Schools" />
+      <End Role="Term" EntitySet="Terms" />
+    </AssociationSet>
+    <AssociationSet Name="SchoolStudent" Association="StudentInfoModel.Store.SchoolStudent">
+      <End Role="School" EntitySet="Schools" />
+      <End Role="Student" EntitySet="People_Student" />
+    </AssociationSet>
+    <AssociationSet Name="StudentEnrollment" Association="StudentInfoModel.Store.StudentEnrollment">
+      <End Role="Student" EntitySet="People_Student" />
+      <End Role="Enrollment" EntitySet="Enrollments" />
+    </AssociationSet>
+    <AssociationSet Name="SectionEnrollment" Association="StudentInfoModel.Store.SectionEnrollment">
+      <End Role="Section" EntitySet="Sections" />
+      <End Role="Enrollment" EntitySet="Enrollments" />
+    </AssociationSet>
+    <AssociationSet Name="EnrollmentAssignmentGrade" Association="StudentInfoModel.Store.EnrollmentAssignmentGrade">
+      <End Role="Enrollment" EntitySet="Enrollments" />
+      <End Role="AssignmentGrade" EntitySet="AssignmentGrades" />
+    </AssociationSet>
+    <AssociationSet Name="CourseSection" Association="StudentInfoModel.Store.CourseSection">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Section" EntitySet="Sections" />
+    </AssociationSet>
+    <AssociationSet Name="SectionAssignment" Association="StudentInfoModel.Store.SectionAssignment">
+      <End Role="Section" EntitySet="Sections" />
+      <End Role="Assignment" EntitySet="Assignments" />
+    </AssociationSet>
+    <AssociationSet Name="AssignmentAssignmentGrade" Association="StudentInfoModel.Store.AssignmentAssignmentGrade">
+      <End Role="Assignment" EntitySet="Assignments" />
+      <End Role="AssignmentGrade" EntitySet="AssignmentGrades" />
+    </AssociationSet>
+    <AssociationSet Name="DepartmentCourse" Association="StudentInfoModel.Store.DepartmentCourse">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Course" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="TermSection" Association="StudentInfoModel.Store.TermSection">
+      <End Role="Term" EntitySet="Terms" />
+      <End Role="Section" EntitySet="Sections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_inherits_Person" Association="StudentInfoModel.Store.FK_Student_inherits_Person">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Student" EntitySet="People_Student" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Schools">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolName" Type="nvarchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="LoginName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="EmailAddress" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="PhoneNumber" Type="nvarchar" Nullable="false" MaxLength="15" />
+    <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="35" />
+    <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="2" />
+    <Property Name="ZipCode" Type="nvarchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Enrollments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GradeType" Type="int" Nullable="false" />
+    <Property Name="Grade" Type="int" Nullable="false" />
+    <Property Name="Student_Id" Type="int" Nullable="false" />
+    <Property Name="Section_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sections">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Capacity" Type="smallint" Nullable="false" />
+    <Property Name="Course_Id" Type="int" Nullable="false" />
+    <Property Name="Term_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseNum" Type="nvarchar" Nullable="false" MaxLength="4" />
+    <Property Name="CourseTitle" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Credits" Type="smallint" Nullable="false" />
+    <Property Name="Department_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dept" Type="nvarchar" Nullable="false" MaxLength="4" />
+    <Property Name="DeptName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="School_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Terms">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="smallint" Nullable="false" />
+    <Property Name="TermEnum" Type="int" Nullable="false" />
+    <Property Name="School_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Assignments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Assign" Type="nvarchar" Nullable="false" MaxLength="2" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="MaxPoints" Type="smallint" Nullable="false" />
+    <Property Name="DueDate" Type="datetime" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Section_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AssignmentGrades">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Points" Type="smallint" Nullable="false" />
+    <Property Name="DateCompleted" Type="datetime" Nullable="false" />
+    <Property Name="Enrollment_Id" Type="int" Nullable="false" />
+    <Property Name="Assignment_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="People_Student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="School_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="SchoolDepartment">
+    <End Role="School" Type="StudentInfoModel.Store.Schools" Multiplicity="1" />
+    <End Role="Department" Type="StudentInfoModel.Store.Departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="School">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="School_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SchoolTerm">
+    <End Role="School" Type="StudentInfoModel.Store.Schools" Multiplicity="1" />
+    <End Role="Term" Type="StudentInfoModel.Store.Terms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="School">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Term">
+        <PropertyRef Name="School_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SchoolStudent">
+    <End Role="School" Type="StudentInfoModel.Store.Schools" Multiplicity="1" />
+    <End Role="Student" Type="StudentInfoModel.Store.People_Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="School">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="School_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StudentEnrollment">
+    <End Role="Student" Type="StudentInfoModel.Store.People_Student" Multiplicity="1" />
+    <End Role="Enrollment" Type="StudentInfoModel.Store.Enrollments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Enrollment">
+        <PropertyRef Name="Student_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SectionEnrollment">
+    <End Role="Section" Type="StudentInfoModel.Store.Sections" Multiplicity="1" />
+    <End Role="Enrollment" Type="StudentInfoModel.Store.Enrollments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Enrollment">
+        <PropertyRef Name="Section_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EnrollmentAssignmentGrade">
+    <End Role="Enrollment" Type="StudentInfoModel.Store.Enrollments" Multiplicity="1" />
+    <End Role="AssignmentGrade" Type="StudentInfoModel.Store.AssignmentGrades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enrollment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AssignmentGrade">
+        <PropertyRef Name="Enrollment_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CourseSection">
+    <End Role="Course" Type="StudentInfoModel.Store.Courses" Multiplicity="1" />
+    <End Role="Section" Type="StudentInfoModel.Store.Sections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Section">
+        <PropertyRef Name="Course_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SectionAssignment">
+    <End Role="Section" Type="StudentInfoModel.Store.Sections" Multiplicity="1" />
+    <End Role="Assignment" Type="StudentInfoModel.Store.Assignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Assignment">
+        <PropertyRef Name="Section_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AssignmentAssignmentGrade">
+    <End Role="Assignment" Type="StudentInfoModel.Store.Assignments" Multiplicity="1" />
+    <End Role="AssignmentGrade" Type="StudentInfoModel.Store.AssignmentGrades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AssignmentGrade">
+        <PropertyRef Name="Assignment_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DepartmentCourse">
+    <End Role="Department" Type="StudentInfoModel.Store.Departments" Multiplicity="1" />
+    <End Role="Course" Type="StudentInfoModel.Store.Courses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="Department_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TermSection">
+    <End Role="Term" Type="StudentInfoModel.Store.Terms" Multiplicity="1" />
+    <End Role="Section" Type="StudentInfoModel.Store.Sections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Term">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Section">
+        <PropertyRef Name="Term_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_inherits_Person">
+    <End Role="Person" Type="StudentInfoModel.Store.People" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Student" Type="StudentInfoModel.Store.People_Student" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="StudentInfoModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="StudentInfoModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Schools" EntityType="StudentInfoModel.School" />
+          <EntitySet Name="People" EntityType="StudentInfoModel.Person" />
+          <EntitySet Name="Enrollments" EntityType="StudentInfoModel.Enrollment" />
+          <EntitySet Name="Sections" EntityType="StudentInfoModel.Section" />
+          <EntitySet Name="Courses" EntityType="StudentInfoModel.Course" />
+          <EntitySet Name="Departments" EntityType="StudentInfoModel.Department" />
+          <EntitySet Name="Terms" EntityType="StudentInfoModel.Term" />
+          <EntitySet Name="Assignments" EntityType="StudentInfoModel.Assignment" />
+          <EntitySet Name="AssignmentGrades" EntityType="StudentInfoModel.AssignmentGrade" />
+          <AssociationSet Name="SchoolDepartment" Association="StudentInfoModel.SchoolDepartment">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="Department" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="SchoolTerm" Association="StudentInfoModel.SchoolTerm">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="Term" EntitySet="Terms" />
+          </AssociationSet>
+          <AssociationSet Name="SchoolStudent" Association="StudentInfoModel.SchoolStudent">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="Student" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="StudentEnrollment" Association="StudentInfoModel.StudentEnrollment">
+            <End Role="Student" EntitySet="People" />
+            <End Role="Enrollment" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="SectionEnrollment" Association="StudentInfoModel.SectionEnrollment">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="Enrollment" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="EnrollmentAssignmentGrade" Association="StudentInfoModel.EnrollmentAssignmentGrade">
+            <End Role="Enrollment" EntitySet="Enrollments" />
+            <End Role="AssignmentGrade" EntitySet="AssignmentGrades" />
+          </AssociationSet>
+          <AssociationSet Name="CourseSection" Association="StudentInfoModel.CourseSection">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Section" EntitySet="Sections" />
+          </AssociationSet>
+          <AssociationSet Name="SectionAssignment" Association="StudentInfoModel.SectionAssignment">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="Assignment" EntitySet="Assignments" />
+          </AssociationSet>
+          <AssociationSet Name="AssignmentAssignmentGrade" Association="StudentInfoModel.AssignmentAssignmentGrade">
+            <End Role="Assignment" EntitySet="Assignments" />
+            <End Role="AssignmentGrade" EntitySet="AssignmentGrades" />
+          </AssociationSet>
+          <AssociationSet Name="DepartmentCourse" Association="StudentInfoModel.DepartmentCourse">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="TermSection" Association="StudentInfoModel.TermSection">
+            <End Role="Term" EntitySet="Terms" />
+            <End Role="Section" EntitySet="Sections" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="School">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolName" Type="String" Nullable="false" MaxLength="30" />
+          <NavigationProperty Name="Departments" Relationship="StudentInfoModel.SchoolDepartment" FromRole="School" ToRole="Department" />
+          <NavigationProperty Name="Terms" Relationship="StudentInfoModel.SchoolTerm" FromRole="School" ToRole="Term" />
+          <NavigationProperty Name="Students" Relationship="StudentInfoModel.SchoolStudent" FromRole="School" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" />
+          <Property Name="LoginName" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="15" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="35" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="30" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="2" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Student" BaseType="StudentInfoModel.Person">
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="School" Relationship="StudentInfoModel.SchoolStudent" FromRole="Student" ToRole="School" />
+          <NavigationProperty Name="Enrollments" Relationship="StudentInfoModel.StudentEnrollment" FromRole="Student" ToRole="Enrollment" />
+        </EntityType>
+        <EntityType Name="Enrollment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GradeType" Type="StudentInfoModel.GradeTypesEnum" Nullable="false" />
+          <Property Name="Grade" Type="StudentInfoModel.GradesEnum" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="StudentInfoModel.StudentEnrollment" FromRole="Enrollment" ToRole="Student" />
+          <NavigationProperty Name="Section" Relationship="StudentInfoModel.SectionEnrollment" FromRole="Enrollment" ToRole="Section" />
+          <NavigationProperty Name="AssignmentGrades" Relationship="StudentInfoModel.EnrollmentAssignmentGrade" FromRole="Enrollment" ToRole="AssignmentGrade" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Capacity" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Enrollments" Relationship="StudentInfoModel.SectionEnrollment" FromRole="Section" ToRole="Enrollment" />
+          <NavigationProperty Name="Course" Relationship="StudentInfoModel.CourseSection" FromRole="Section" ToRole="Course" />
+          <NavigationProperty Name="Assignments" Relationship="StudentInfoModel.SectionAssignment" FromRole="Section" ToRole="Assignment" />
+          <NavigationProperty Name="Term" Relationship="StudentInfoModel.TermSection" FromRole="Section" ToRole="Term" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseNum" Type="String" Nullable="false" MaxLength="4" />
+          <Property Name="CourseTitle" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Credits" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Sections" Relationship="StudentInfoModel.CourseSection" FromRole="Course" ToRole="Section" />
+          <NavigationProperty Name="Department" Relationship="StudentInfoModel.DepartmentCourse" FromRole="Course" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dept" Type="String" Nullable="false" MaxLength="4" />
+          <Property Name="DeptName" Type="String" Nullable="false" MaxLength="50" />
+          <NavigationProperty Name="School" Relationship="StudentInfoModel.SchoolDepartment" FromRole="Department" ToRole="School" />
+          <NavigationProperty Name="Courses" Relationship="StudentInfoModel.DepartmentCourse" FromRole="Department" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="Term">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Int16" Nullable="false" />
+          <Property Name="TermEnum" Type="StudentInfoModel.TermsEnum" Nullable="false" />
+          <NavigationProperty Name="School" Relationship="StudentInfoModel.SchoolTerm" FromRole="Term" ToRole="School" />
+          <NavigationProperty Name="Sections" Relationship="StudentInfoModel.TermSection" FromRole="Term" ToRole="Section" />
+        </EntityType>
+        <EntityType Name="Assignment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Assign" Type="String" Nullable="false" MaxLength="2" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="MaxPoints" Type="Int16" Nullable="false" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" />
+          <Property Name="Type" Type="StudentInfoModel.AssignmentTypesEnum" Nullable="false" />
+          <NavigationProperty Name="Section" Relationship="StudentInfoModel.SectionAssignment" FromRole="Assignment" ToRole="Section" />
+          <NavigationProperty Name="AssignmentGrades" Relationship="StudentInfoModel.AssignmentAssignmentGrade" FromRole="Assignment" ToRole="AssignmentGrade" />
+        </EntityType>
+        <EntityType Name="AssignmentGrade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Points" Type="Int16" Nullable="false" />
+          <Property Name="DateCompleted" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Enrollment" Relationship="StudentInfoModel.EnrollmentAssignmentGrade" FromRole="AssignmentGrade" ToRole="Enrollment" />
+          <NavigationProperty Name="Assignment" Relationship="StudentInfoModel.AssignmentAssignmentGrade" FromRole="AssignmentGrade" ToRole="Assignment" />
+        </EntityType>
+        <Association Name="SchoolDepartment">
+          <End Type="StudentInfoModel.School" Role="School" Multiplicity="1" />
+          <End Type="StudentInfoModel.Department" Role="Department" Multiplicity="*" />
+        </Association>
+        <Association Name="SchoolTerm">
+          <End Type="StudentInfoModel.School" Role="School" Multiplicity="1" />
+          <End Type="StudentInfoModel.Term" Role="Term" Multiplicity="*" />
+        </Association>
+        <Association Name="SchoolStudent">
+          <End Type="StudentInfoModel.School" Role="School" Multiplicity="1" />
+          <End Type="StudentInfoModel.Student" Role="Student" Multiplicity="*" />
+        </Association>
+        <Association Name="StudentEnrollment">
+          <End Type="StudentInfoModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="StudentInfoModel.Enrollment" Role="Enrollment" Multiplicity="*" />
+        </Association>
+        <Association Name="SectionEnrollment">
+          <End Type="StudentInfoModel.Section" Role="Section" Multiplicity="1" />
+          <End Type="StudentInfoModel.Enrollment" Role="Enrollment" Multiplicity="*" />
+        </Association>
+        <Association Name="EnrollmentAssignmentGrade">
+          <End Type="StudentInfoModel.Enrollment" Role="Enrollment" Multiplicity="1" />
+          <End Type="StudentInfoModel.AssignmentGrade" Role="AssignmentGrade" Multiplicity="*" />
+        </Association>
+        <Association Name="CourseSection">
+          <End Type="StudentInfoModel.Course" Role="Course" Multiplicity="1" />
+          <End Type="StudentInfoModel.Section" Role="Section" Multiplicity="*" />
+        </Association>
+        <Association Name="SectionAssignment">
+          <End Type="StudentInfoModel.Section" Role="Section" Multiplicity="1" />
+          <End Type="StudentInfoModel.Assignment" Role="Assignment" Multiplicity="*" />
+        </Association>
+        <Association Name="AssignmentAssignmentGrade">
+          <End Type="StudentInfoModel.Assignment" Role="Assignment" Multiplicity="1" />
+          <End Type="StudentInfoModel.AssignmentGrade" Role="AssignmentGrade" Multiplicity="*" />
+        </Association>
+        <Association Name="DepartmentCourse">
+          <End Type="StudentInfoModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="StudentInfoModel.Course" Role="Course" Multiplicity="*" />
+        </Association>
+        <EnumType Name="AssignmentTypesEnum">
+          <Member Name="E" />
+          <Member Name="Q" />
+        </EnumType>
+        <EnumType Name="GradesEnum">
+          <Member Name="A" />
+          <Member Name="B" />
+          <Member Name="C" />
+          <Member Name="D" />
+          <Member Name="F" />
+          <Member Name="P" />
+          <Member Name="NC" />
+          <Member Name="W" />
+          <Member Name="AU" />
+          <Member Name="I" />
+          <Member Name="IP" />
+          <Member Name="Z" />
+        </EnumType>
+        <EnumType Name="GradeTypesEnum">
+          <Member Name="AF" />
+          <Member Name="PN" />
+          <Member Name="AU" />
+        </EnumType>
+        <EnumType Name="TermsEnum">
+          <Member Name="Fall" />
+          <Member Name="Spr" />
+          <Member Name="Sum" />
+        </EnumType>
+        <Association Name="TermSection">
+          <End Type="StudentInfoModel.Term" Role="Term" Multiplicity="1" />
+          <End Type="StudentInfoModel.Section" Role="Section" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StudentInfoModelStoreContainer" CdmEntityContainer="StudentInfoModelContainer">
+    <EntitySetMapping Name="Schools">
+      <EntityTypeMapping TypeName="IsTypeOf(StudentInfoModel.School)">
+        <MappingFragment StoreEntitySet="Schools">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="IsTypeOf(StudentInfoModel.Person)">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(StudentInfoModel.Student)">
+        <MappingFragment StoreEntitySet="People_Student">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Enrollments">
+      <EntityTypeMapping TypeName="IsTypeOf(StudentInfoModel.Enrollment)">
+        <MappingFragment StoreEntitySet="Enrollments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GradeType" ColumnName="GradeType" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sections">
+      <EntityTypeMapping TypeName="IsTypeOf(StudentInfoModel.Section)">
+        <MappingFragment StoreEntitySet="Sections">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="IsTypeOf(StudentInfoModel.Course)">
+        <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CourseNum" ColumnName="CourseNum" />
+          <ScalarProperty Name="CourseTitle" ColumnName="CourseTitle" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="IsTypeOf(StudentInfoModel.Department)">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Dept" ColumnName="Dept" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Terms">
+      <EntityTypeMapping TypeName="IsTypeOf(StudentInfoModel.Term)">
+        <MappingFragment StoreEntitySet="Terms">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="TermEnum" ColumnName="TermEnum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Assignments">
+      <EntityTypeMapping TypeName="IsTypeOf(StudentInfoModel.Assignment)">
+        <MappingFragment StoreEntitySet="Assignments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Assign" ColumnName="Assign" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="MaxPoints" ColumnName="MaxPoints" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssignmentGrades">
+      <EntityTypeMapping TypeName="IsTypeOf(StudentInfoModel.AssignmentGrade)">
+        <MappingFragment StoreEntitySet="AssignmentGrades">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="DateCompleted" ColumnName="DateCompleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="SchoolDepartment" TypeName="StudentInfoModel.SchoolDepartment" StoreEntitySet="Departments">
+      <EndProperty Name="School">
+        <ScalarProperty Name="Id" ColumnName="School_Id" />
+      </EndProperty>
+      <EndProperty Name="Department">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SchoolTerm" TypeName="StudentInfoModel.SchoolTerm" StoreEntitySet="Terms">
+      <EndProperty Name="School">
+        <ScalarProperty Name="Id" ColumnName="School_Id" />
+      </EndProperty>
+      <EndProperty Name="Term">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SchoolStudent" TypeName="StudentInfoModel.SchoolStudent" StoreEntitySet="People_Student">
+      <EndProperty Name="School">
+        <ScalarProperty Name="Id" ColumnName="School_Id" />
+      </EndProperty>
+      <EndProperty Name="Student">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="StudentEnrollment" TypeName="StudentInfoModel.StudentEnrollment" StoreEntitySet="Enrollments">
+      <EndProperty Name="Student">
+        <ScalarProperty Name="Id" ColumnName="Student_Id" />
+      </EndProperty>
+      <EndProperty Name="Enrollment">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SectionEnrollment" TypeName="StudentInfoModel.SectionEnrollment" StoreEntitySet="Enrollments">
+      <EndProperty Name="Section">
+        <ScalarProperty Name="Id" ColumnName="Section_Id" />
+      </EndProperty>
+      <EndProperty Name="Enrollment">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EnrollmentAssignmentGrade" TypeName="StudentInfoModel.EnrollmentAssignmentGrade" StoreEntitySet="AssignmentGrades">
+      <EndProperty Name="Enrollment">
+        <ScalarProperty Name="Id" ColumnName="Enrollment_Id" />
+      </EndProperty>
+      <EndProperty Name="AssignmentGrade">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CourseSection" TypeName="StudentInfoModel.CourseSection" StoreEntitySet="Sections">
+      <EndProperty Name="Course">
+        <ScalarProperty Name="Id" ColumnName="Course_Id" />
+      </EndProperty>
+      <EndProperty Name="Section">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SectionAssignment" TypeName="StudentInfoModel.SectionAssignment" StoreEntitySet="Assignments">
+      <EndProperty Name="Section">
+        <ScalarProperty Name="Id" ColumnName="Section_Id" />
+      </EndProperty>
+      <EndProperty Name="Assignment">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AssignmentAssignmentGrade" TypeName="StudentInfoModel.AssignmentAssignmentGrade" StoreEntitySet="AssignmentGrades">
+      <EndProperty Name="Assignment">
+        <ScalarProperty Name="Id" ColumnName="Assignment_Id" />
+      </EndProperty>
+      <EndProperty Name="AssignmentGrade">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DepartmentCourse" TypeName="StudentInfoModel.DepartmentCourse" StoreEntitySet="Courses">
+      <EndProperty Name="Department">
+        <ScalarProperty Name="Id" ColumnName="Department_Id" />
+      </EndProperty>
+      <EndProperty Name="Course">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TermSection" TypeName="StudentInfoModel.TermSection" StoreEntitySet="Sections">
+      <EndProperty Name="Term">
+        <ScalarProperty Name="Id" ColumnName="Term_Id" />
+      </EndProperty>
+      <EndProperty Name="Section">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
