@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1433d489ffbb4768ab081bdf19f0dd77" Name="Diagram1" ZoomLevel="129" >
+        <EntityTypeShape EntityType="StudentInfoModel.School" Width="1.5" PointX="2.5" PointY="2.625" />
+        <EntityTypeShape EntityType="StudentInfoModel.Person" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="StudentInfoModel.Student" Width="1.5" PointX="2.5" PointY="0.5" />
+        <EntityTypeShape EntityType="StudentInfoModel.Enrollment" Width="1.5" PointX="4.625" PointY="0.5" />
+        <EntityTypeShape EntityType="StudentInfoModel.Section" Width="1.5" PointX="4.625" PointY="3.125" />
+        <EntityTypeShape EntityType="StudentInfoModel.Course" Width="1.5" PointX="4.625" PointY="5.75" />
+        <EntityTypeShape EntityType="StudentInfoModel.Department" Width="1.5" PointX="0.5" PointY="3.75" />
+        <EntityTypeShape EntityType="StudentInfoModel.Term" Width="1.5" PointX="2.5" PointY="5.125" />
+        <EntityTypeShape EntityType="StudentInfoModel.Assignment" Width="1.5" PointX="6.75" PointY="3" />
+        <EntityTypeShape EntityType="StudentInfoModel.AssignmentGrade" Width="1.75" PointX="6.75" PointY="0.5" />
+        <InheritanceConnector EntityType="StudentInfoModel.Student" />
+        <AssociationConnector Association="StudentInfoModel.SchoolDepartment" />
+        <AssociationConnector Association="StudentInfoModel.SchoolTerm" />
+        <AssociationConnector Association="StudentInfoModel.SchoolStudent" />
+        <AssociationConnector Association="StudentInfoModel.DepartmentCourse" />
+        <AssociationConnector Association="StudentInfoModel.StudentEnrollment" />
+        <AssociationConnector Association="StudentInfoModel.SectionEnrollment" />
+        <AssociationConnector Association="StudentInfoModel.SectionAssignment" />
+        <AssociationConnector Association="StudentInfoModel.EnrollmentAssignmentGrade" />
+        <AssociationConnector Association="StudentInfoModel.AssignmentAssignmentGrade" />
+        <AssociationConnector Association="StudentInfoModel.CourseSection" />
+        <AssociationConnector Association="StudentInfoModel.TermSection" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
